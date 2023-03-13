@@ -16,7 +16,7 @@
   
   <script>
    
-  var url = 'https://groupednews.s3.amazonaws.com/example.json?AWSAccessKeyId=AKIA3RWM4P432GFA2VCO&Signature=cgNmInZDE2%2FsMwnGwj%2F4AqXb8rA%3D&Expires=1678705916';
+  var url = 'https://groupednews.s3.amazonaws.com/example.json?AWSAccessKeyId=AKIA3RWM4P432GFA2VCO&Signature=s9BqkNLWGl%2FzrJOM%2FrOQ8PrECUc%3D&Expires=1678711915';
 
   var randomNum = 0;
   var index_news =-1;
@@ -34,11 +34,6 @@
         dataDisplay.innerHTML = "";
         	
         
-        
-        
-        
-        
-        
         $.getJSON(url, function(data) {
         
         var lengtofdata = Object.keys(data).length;
@@ -55,7 +50,6 @@
                       
                   
                         if (innerkey == "picture"){
-                            //$("#data").append("--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------");
                             $("#data").append("<p>" +" " + "</p>");
                             $("#data").append("<img src="+innervalue+ " width='500' height='300'/>");
                             $("#data").append("<p>" +" " + "</p>");
@@ -91,10 +85,7 @@
  
       });
 
-    //var accessKeyId = 'AKIA3RWM4P432GFA2VCO';
-    //var secretAccessKey = 'gehOfdHTmaN+D0xJNE07jBgYoIdBmQS/rMTc6PmL';
-    //var bucketName = 'group_news';
-    //var fileName = 'example.json';
+    
     
 
 
