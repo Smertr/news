@@ -68,8 +68,10 @@
     
                                 if (innerkey == "info") {
                                     $.each(innervalue, function(innerInnerkey, innerInnervalue) {
+                                        $("#data").append("-----------------------------------------------------------------------------------------------------");
                                         $("#data").append("<h4>&nbsp;&nbsp;&nbsp;&nbsp;" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
                                         //$("#data").append("<a href="  +innerInnervalue.link +" target='_blank'>" + innerInnervalue.source +"</a>");
+                                        $("#data").append("-----------------------------------------------------------------------------------------------------");
                                         $("#data").append("<p>" + " " + "</p>");
     
     
