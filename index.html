@@ -22,64 +22,69 @@
         var url = 'https://groupednews.s3.amazonaws.com/example.json';
         var randomNum = 0;
         var index_news = -1;
-
+        var data = $.getJSON(url, function(data) {
+        
+        
+        });
+        
+        
         function randomNumInRange(min, max) {
             return Math.floor(Math.random() * (max - min + 1)) + min;
         }
         var myButton = document.querySelector('#my-button');
-        myButton.addEventListener('click', function() {
+            myButton.addEventListener('click', function() {
 
-
-            const dataDisplay = document.getElementById("data");
-
-            // clear previous data
-            dataDisplay.innerHTML = "";
-
-
-            $.getJSON(url, function(data) {
-
-                var lengtofdata = Object.keys(data).length;
-                randomNum = randomNumInRange(0, lengtofdata);
-
-
-                $.each(data, function(key, value) {
-                    if (key == "cluster" + index_news) {
-
-
-
-                        $.each(value, function(innerkey, innervalue) {
-
-
-                            if (innerkey == "picture") {
-                                $("#data").append("<p>" + " " + "</p>");
-                                $("#data").append("<img src=" + innervalue + " width='500' height='300'/>");
-                                $("#data").append("<p>" + " " + "</p>");
-                            };
-
-                            if (innerkey == "main") {
-                                //$("#data").append("<h3>" + innervalue + "</h3>");
-                                //$("#data").append("<p>" +" " + "</p>");
-                            };
-
-                            if (innerkey == "info") {
-                                $.each(innervalue, function(innerInnerkey, innerInnervalue) {
-                                    $("#data").append("<h4>&nbsp;&nbsp;&nbsp;&nbsp;" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
-                                    //$("#data").append("<a href="  +innerInnervalue.link +" target='_blank'>" + innerInnervalue.source +"</a>");
+                var data2 =data.responseJSON;
+                const dataDisplay = document.getElementById("data");
+    
+                // clear previous data
+                dataDisplay.innerHTML = "";
+    
+    
+                
+    
+                    var lengtofdata = Object.keys(data2).length;
+                    randomNum = randomNumInRange(0, lengtofdata);
+    
+    
+                    $.each(data2, function(key, value) {
+                        if (key == "cluster" + index_news) {
+    
+    
+    
+                            $.each(value, function(innerkey, innervalue) {
+    
+    
+                                if (innerkey == "picture") {
                                     $("#data").append("<p>" + " " + "</p>");
+                                    $("#data").append("<img src=" + innervalue + " width='500' height='300'/>");
+                                    $("#data").append("<p>" + " " + "</p>");
+                                };
+    
+                                if (innerkey == "main") {
+                                    //$("#data").append("<h3>" + innervalue + "</h3>");
+                                    //$("#data").append("<p>" +" " + "</p>");
+                                };
+    
+                                if (innerkey == "info") {
+                                    $.each(innervalue, function(innerInnerkey, innerInnervalue) {
+                                        $("#data").append("<h4>&nbsp;&nbsp;&nbsp;&nbsp;" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
+                                        //$("#data").append("<a href="  +innerInnervalue.link +" target='_blank'>" + innerInnervalue.source +"</a>");
+                                        $("#data").append("<p>" + " " + "</p>");
+    
+    
+    
+                                    });
+                                };
+                                $("#data").append("<br></br>");
+    
+    
+                            });
+    
+                        };
+                    });
 
-
-
-                                });
-                            };
-                            $("#data").append("<br></br>");
-
-
-                        });
-
-                    };
-                });
-
-            });
+           
 
             index_news = index_news + 1;
 
