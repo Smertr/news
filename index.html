@@ -19,7 +19,7 @@
     <script>
               
 
-        var url = 'https://groupednews.s3.amazonaws.com/example.json';
+        var url = 'https://1jxlpgt2z2.execute-api.us-east-1.amazonaws.com/daily';
         var randomNum = 0;
         var index_news = -1;
         var data = $.getJSON(url, function(data) {
@@ -48,7 +48,7 @@
     
     
                     $.each(data2, function(key, value) {
-                        if (key == "cluster" + randomNum) {
+                        if (key == "cluster" + index_news) {
     
     
     
