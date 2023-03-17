@@ -50,7 +50,7 @@
           myData = data;
           if (myData) {
           
-          
+            var lengtofdata = Object.keys(myData).length;
             console.log(myData); 
             dataDisplay.innerHTML = "";
             $("#data").append("<center><p><h1>" + "HABERLER HAZIR " + "</h1></p></center>");
@@ -61,7 +61,7 @@
                     // clear previous data
                     dataDisplay.innerHTML = "";
         
-                    var lengtofdata = Object.keys(myData).length;
+                    
                     //randomNum = randomNumInRange(0, lengtofdata);
                         
         
@@ -106,6 +106,10 @@
                
 
                 index_news = index_news + 1;
+               
+                if (index_news == lengtofdata){
+                    index_news =0;
+                };
 
 
             });
