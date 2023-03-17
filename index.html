@@ -24,47 +24,6 @@
 
 <body>
 
-    <button id="myButton_back">GERİ</button>
-     <script>
-        var myButton_back = document.getElementById("myButton_back");
-        
-        // Set the CSS styling for the button
-        myButton_back.style.backgroundColor = "#FF8000"; // Green background
-        myButton_back.style.fontSize = "24px"; // Font
-        myButton_back.style.color = "white"; // White text
-        myButton_back.style.padding = "36px 18px"; // Add padding
-        myButton_back.style.border = "none"; // Remove default border
-        myButton_back.style.borderRadius = "50%"; // Add rounded corners
-        myButton_back.style.position = "absolute"; // Position the button using absolute positioning
-        myButton_back.style.top = "150px"; // Set the distance from the top of the page to 100 pixels
-        myButton_back.style.left = "20px"; // Set the distance from the left of the page to 200 pixels
-
-      </script>
-    
-
-
-
-
-    <button id="myButton_inorder">İLERİ</button>
-     <script>
-        var myButton_inorder = document.getElementById("myButton_inorder");
-        
-        // Set the CSS styling for the button
-        myButton_inorder.style.backgroundColor = "#0080FF"; // Green background
-        myButton_inorder.style.fontSize = "24px"; // Font
-        myButton_inorder.style.color = "white"; // White text
-        myButton_inorder.style.padding = "36px 20px"; // Add padding
-        myButton_inorder.style.border = "none"; // Remove default border
-        myButton_inorder.style.borderRadius = "50%"; // Add rounded corners
-        myButton_inorder.style.position = "absolute"; // Position the button using absolute positioning
-        myButton_inorder.style.top = "150px"; // Set the distance from the top of the page to 100 pixels
-        myButton_inorder.style.left = "640px"; // Set the distance from the left of the page to 200 pixels
-
-      </script>
-    
-     
-    
-    
     <div id="data"></div>
 
     <script>
@@ -161,39 +120,50 @@
             console.log(myData); 
             dataDisplay.innerHTML = "";
             $("#data").append("<p><h1>" + "HAZIR... " + "</h1></p>");
+            $("#data").append("<p><h2>" + "Ekranınızın sağ tarafına tıklayarak ileri" + "</h2></p>");
+            $("#data").append("<p><h2>" + "Sol tarafına tıklayarak geri gidebilirsiniz" + "</h2></p>");
             
             
             
-            myButton_inorder.addEventListener('click', function() {  
-                                 
-                    
-                    index_no =    index_news;
-                    
-                    displayData(index_no);
+            
+            
+            
+            document.addEventListener("click", function(event) {
+              var windowWidth = window.innerWidth;
+              var clickX = event.clientX;
+              
+              if (clickX > windowWidth / 2) {
+              
+              
+                index_no =    index_news;
+                
+                displayData(index_no);
 
-                    index_news = index_news + 1;
-                    
-                    if (index_news == lengtofdata){
-                        index_news =0;
-                        };
-
-            });
-            
-            
-            myButton_back.addEventListener('click', function() {  
-                                 
-                    if (index_news>=0){
-                        index_no =    index_news-2;
-                        
-                        displayData(index_no);
-    
-                        index_news = index_news - 1;
-                        
-                        if (index_news == lengtofdata){
-                            index_news =0;
-                            };
+                index_news = index_news + 1;
+                
+                if (index_news == lengtofdata){
+                    index_news =0;
                     };
+
+              }
+              else{
+              
+              if (index_news>=0){
+                  index_no =    index_news-2;
+                  
+                  displayData(index_no);
+
+                  index_news = index_news - 1;
+                  
+                  if (index_news == lengtofdata){
+                      index_news =0;
+                      };
+              };
+              
+              
+              }
             });
+
             
             
             /*
