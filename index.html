@@ -24,26 +24,46 @@
 
 <body>
 
-    <button id="myButton_inorder">GETİR</button>
+    <button id="myButton_back">GERİ <br> DÖN</button>
+     <script>
+        var myButton_back = document.getElementById("myButton_back");
+        
+        // Set the CSS styling for the button
+        myButton_back.style.backgroundColor = "#FF8000"; // Green background
+        myButton_back.style.fontSize = "24px"; // Font
+        myButton_back.style.color = "white"; // White text
+        myButton_back.style.padding = "18px"; // Add padding
+        myButton_back.style.border = "none"; // Remove default border
+        myButton_back.style.borderRadius = "50%"; // Add rounded corners
+        myButton_back.style.position = "absolute"; // Position the button using absolute positioning
+        myButton_back.style.top = "150px"; // Set the distance from the top of the page to 100 pixels
+        myButton_back.style.left = "20px"; // Set the distance from the left of the page to 200 pixels
+
+      </script>
+    
+
+
+
+
+    <button id="myButton_inorder">İLERİ</button>
      <script>
         var myButton_inorder = document.getElementById("myButton_inorder");
         
         // Set the CSS styling for the button
-        myButton_inorder.style.backgroundColor = "#4CAF50"; // Green background
-        myButton_inorder.style.fontSize = "72px"; // Font
+        myButton_inorder.style.backgroundColor = "#0080FF"; // Green background
+        myButton_inorder.style.fontSize = "20px"; // Font
         myButton_inorder.style.color = "white"; // White text
-        myButton_inorder.style.padding = "36px"; // Add padding
+        myButton_inorder.style.padding = "36px 18px"; // Add padding
         myButton_inorder.style.border = "none"; // Remove default border
         myButton_inorder.style.borderRadius = "50%"; // Add rounded corners
         myButton_inorder.style.position = "absolute"; // Position the button using absolute positioning
-        myButton_inorder.style.top = "200px"; // Set the distance from the top of the page to 100 pixels
-        myButton_inorder.style.left = "600px"; // Set the distance from the left of the page to 200 pixels
+        myButton_inorder.style.top = "150px"; // Set the distance from the top of the page to 100 pixels
+        myButton_inorder.style.left = "640px"; // Set the distance from the left of the page to 200 pixels
 
       </script>
     
      
     
-    <h1></h1>
     
     <div id="data"></div>
 
@@ -53,7 +73,7 @@
         var index_no    = 0;
         
         const dataDisplay = document.getElementById("data");
-         $("#data").append("<center><p><h1>" + "HABERLER BEKLENİYOR " + "</h1></p></center>");
+         $("#data").append("<p><h2>" + "HABERLER BEKLENİYOR " + "</h2></p>");
 
 
          const getData = (() => {
@@ -100,8 +120,11 @@
 
                        if (innerkey == "picture") {
                            $("#data").append("<p>" + " " + "</p>");
-                           $("#data").append("<img src=" + innervalue + " width='500' height='300'/>");
+                           $("#data").append("<img src=" + innervalue + " width='500' height='300' style='float: left; margin-left: 120px;'/>");
                            $("#data").append("<p>" + " " + "</p>");
+                           $("#data").append("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
+                          
+                           
                        };
 
                        if (innerkey == "main") {
@@ -111,7 +134,7 @@
 
                        if (innerkey == "info") {
                            $.each(innervalue, function(innerInnerkey, innerInnervalue) {
-                               $("#data").append("<h4>&nbsp;&nbsp;&nbsp;&nbsp;" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
+                               $("#data").append("<h4>" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
                                //$("#data").append("<a href="  +innerInnervalue.link +" target='_blank'>" + innerInnervalue.source +"</a>");
                                $("#data").append("<p>" + " " + "</p>");
 
@@ -137,7 +160,7 @@
           
             console.log(myData); 
             dataDisplay.innerHTML = "";
-            $("#data").append("<center><p><h1>" + "HAZIR... " + "</h1></p></center>");
+            $("#data").append("<p><h1>" + "HAZIR... " + "</h1></p>");
             
             
             
@@ -155,6 +178,24 @@
                         };
 
             });
+            
+            
+            myButton_back.addEventListener('click', function() {  
+                                 
+                    if (index_news>=0){
+                        index_no =    index_news-1;
+                        
+                        displayData(index_no);
+    
+                        index_news = index_news - 1;
+                        
+                        if (index_news == lengtofdata){
+                            index_news =0;
+                            };
+                    };
+            });
+            
+            
             /*
             //var button_random = document.querySelector('#button_random');
             myButton_random.addEventListener('click', function() {  
