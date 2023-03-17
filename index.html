@@ -13,21 +13,45 @@
     h1 {
       font-size: 100px;
     }
-    </style>
+    
+    
+    
+    
+  </style>
+    
 
 </head>
 
 <body>
-    <h1></h1>
-    <center>
-        <button id="my-button" style="color: green; font: bold 50px Arial ">GETİR</button>
+
+    <button id="myButton_inorder">SIRAYLA</button>
+     <script>
+        var myButton_inorder = document.getElementById("myButton_inorder");
         
-    </center>
+        // Set the CSS styling for the button
+        myButton_inorder.style.backgroundColor = "#4CAF50"; // Green background
+        myButton_inorder.style.fontsize = "36px"; // Font
+        myButton_inorder.style.color = "white"; // White text
+        myButton_inorder.style.padding = "24px 48px"; // Add padding
+        myButton_inorder.style.border = "none"; // Remove default border
+        myButton_inorder.style.borderRadius = "16px"; // Add rounded corners
+        myButton_inorder.style.position = "absolute"; // Position the button using absolute positioning
+        myButton_inorder.style.top = "300px"; // Set the distance from the top of the page to 100 pixels
+        myButton_inorder.style.left = "600px"; // Set the distance from the left of the page to 200 pixels
+
+      </script>
+    
+     
+    
+    <h1></h1>
+    
     <div id="data"></div>
 
     <script>
-        var randomNum = 0;
-        var index_news = 0;
+        var randomNum   = 0;
+        var index_news  = 0;
+        var index_no    = 0;
+        
         const dataDisplay = document.getElementById("data");
          $("#data").append("<center><p><h1>" + "HABERLER BEKLENİYOR " + "</h1></p></center>");
 
@@ -45,81 +69,107 @@
           }
         })();
         
+        
+        
+        
+        let generatedIntegers = [];
+
+        function getRandomIntInRange(min, max) {
+          let randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+          
+          while (generatedIntegers.includes(randomInt)) {
+            randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+          }
+          
+          generatedIntegers.push(randomInt);
+          return randomInt;
+        }
+        
+        
+        
+        
+        
+        function displayData(index_no){
+            // clear previous data
+           dataDisplay.innerHTML = "";
+        
+           $.each(myData, function(key, value) {
+               if (key == "cluster" + index_no) {
+
+                   $.each(value, function(innerkey, innervalue) {
+
+                       if (innerkey == "picture") {
+                           $("#data").append("<p>" + " " + "</p>");
+                           $("#data").append("<img src=" + innervalue + " width='500' height='300'/>");
+                           $("#data").append("<p>" + " " + "</p>");
+                       };
+
+                       if (innerkey == "main") {
+                           //$("#data").append("<h3>" + innervalue + "</h3>");
+                           //$("#data").append("<p>" +" " + "</p>");
+                       };
+
+                       if (innerkey == "info") {
+                           $.each(innervalue, function(innerInnerkey, innerInnervalue) {
+                               $("#data").append("<h4>&nbsp;&nbsp;&nbsp;&nbsp;" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
+                               //$("#data").append("<a href="  +innerInnervalue.link +" target='_blank'>" + innerInnervalue.source +"</a>");
+                               $("#data").append("<p>" + " " + "</p>");
+
+                           });
+                       };
+                       $("#data").append("<br></br>");
+
+                   });
+
+               };
+           });
+        
+        
+        };  
+        
+        
         let myData;
         getData().then((data) => {
           myData = data;
           if (myData) {
-          
             var lengtofdata = Object.keys(myData).length;
+          
+          
             console.log(myData); 
             dataDisplay.innerHTML = "";
-            $("#data").append("<center><p><h1>" + "HABERLER HAZIR " + "</h1></p></center>");
+            $("#data").append("<center><p><h1>" + "HAZIR... " + "</h1></p></center>");
             
             
-            var myButton = document.querySelector('#my-button');
-                myButton.addEventListener('click', function() {  
-                    // clear previous data
-                    dataDisplay.innerHTML = "";
-        
+            
+            myButton_inorder.addEventListener('click', function() {  
+                                 
                     
-                    //randomNum = randomNumInRange(0, lengtofdata);
-                        
-        
-        
-                        $.each(myData, function(key, value) {
-                            if (key == "cluster" + index_news) {
-        
-        
-        
-                                $.each(value, function(innerkey, innervalue) {
-        
-        
-                                    if (innerkey == "picture") {
-                                        $("#data").append("<p>" + " " + "</p>");
-                                        $("#data").append("<center><img src=" + innervalue + " width='500' height='300'/></center>");
-                                        $("#data").append("<p>" + " " + "</p>");
-                                    };
-        
-                                    if (innerkey == "main") {
-                                        //$("#data").append("<h3>" + innervalue + "</h3>");
-                                        //$("#data").append("<p>" +" " + "</p>");
-                                    };
-        
-                                    if (innerkey == "info") {
-                                        $.each(innervalue, function(innerInnerkey, innerInnervalue) {
-                                            $("#data").append("<h4>&nbsp;&nbsp;&nbsp;&nbsp;" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
-                                            //$("#data").append("<a href="  +innerInnervalue.link +" target='_blank'>" + innerInnervalue.source +"</a>");
-                                            $("#data").append("<p>" + " " + "</p>");
-        
-        
-        
-                                        });
-                                    };
-                                    $("#data").append("<br></br>");
-        
-        
-                                });
-        
-                            };
-                        });
+                    index_no =    index_news;
+                    
+                    displayData(index_no);
 
-               
-
-                index_news = index_news + 1;
-               
-                if (index_news == lengtofdata){
-                    index_news =0;
-                };
-
+                    index_news = index_news + 1;
+                    
+                    if (index_news == lengtofdata){
+                        index_news =0;
+                        };
 
             });
-            // Use myData as needed
+            /*
+            //var button_random = document.querySelector('#button_random');
+            myButton_random.addEventListener('click', function() {  
+                    
+                    randomNum = getRandomIntInRange(0, lengtofdata);
+                    
+                    index_no =    randomNum;
+                    
+                    displayData(index_no);
+
+            });
+            */
           } else {
-          
-         
             console.log("Data hasn't been fetched yet");
           }
-          
         });
         
         
@@ -137,4 +187,3 @@
 </body>
 
 </html>
-
