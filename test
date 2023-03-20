@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>My Bootstrap Card</title>
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</head>
+<body>
+
+
+<center>
+<div class="rounded" style="width: 75%;margin-top: 10%; thumbnail-border-radius:18rem;">
+  <img src="https://i.sozcucdn.com/wp-content/uploads/2023/03/20/altin_3_16_9_1610343150_16_9_1644131876_16_9_1644301964.jpeg?w=776&h=436&mode=crop" class="card-img-top" alt="...">
+  
+  
+  <div class="card">
+  <div class="card-body">
+      <p>This is a wider card with content is a little bit longer</p>
+      <div class="badge bg-primary text-wrap" style="width: 5rem; color:white;">
+          Yeni Akit
+      </div>
+      
+  </div>
+  
+  <div class="card">
+  <div class="card-body">
+      <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer</p>
+    
+  </div>
+  
+  <div class="card">
+  <div class="card-body">
+      <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer</p>
+    
+  </div>
+  
+  <div class="card">
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>This is a wider card with supporting text below as as content is a little bit longer class="blockquote-footer" <cite title="Source Title">Yeni Akit</cite></p>
+      <footer class="blockquote-footer"><cite title="Source Title">Yeni Akit</cite></footer>
+    </blockquote>
+    
+  </div>
+  <div class="card">
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer</p>
+      <footer class="blockquote-footer"><cite title="Source Title">Yeni Akit</cite></footer>
+    </blockquote>
+    
+  </div>
+  <div class="card">
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer</p>
+      <footer class="blockquote-footer"><cite title="Source Title">Yeni Akit</cite></footer>
+    </blockquote>
+    
+  </div>
+  <div class="card">
+  <div class="card-body">
+    <blockquote class="blockquote mb-0">
+      <p>This is a wider card with supporting text below as a natural lead-in to additional content. This content is a little bit longer</p>
+      <footer class="blockquote-footer"><cite title="Source Title">Yeni Akit</cite></footer>
+    </blockquote>
+    
+  </div>
+  
+  
+</div>
+
+  
+</div>
+</center>
+
+
+
+  
+
+</body>
+</html>
