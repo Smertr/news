@@ -3,18 +3,48 @@
 <head>
     <meta charset="UTF-8">
     <title>Rastgele Benzer Haberler...</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.103.0.min.js"></script>
+    
     <style>
     body {
       font-size: 16px;
+       background-color: #F2F2F2;
     }
     
     h1 {
       font-size: 50px;
     }
-    
-    
+    .loading-spinner {
+   position: fixed;
+   top: 0;
+   left: 0;
+   width: 100%;
+   height: 100%;
+   background-color: #F2F2F2;
+   z-index: 9999;
+   display: flex;
+   justify-content: center;
+   align-items: center;
+ }
+
+ .spinner {
+   width: 150px;
+   height: 150px;
+   border-radius: 50%;
+   border-top: 5px solid #387ED8;
+   border-right: 5px solid transparent;
+   animation: spin 1s linear infinite;
+ }
+
+ @keyframes spin {
+   to {
+     transform: rotate(360deg);
+   }
+ }
     
     
   </style>
@@ -23,6 +53,9 @@
 </head>
 
 <body>
+    
+
+
 
     <div id="data"></div>
 
@@ -32,7 +65,8 @@
         var index_no    = 0;
         
         const dataDisplay = document.getElementById("data");
-         $("#data").append("<p><h2>" + "HABERLER BEKLENİYOR " + "</h2></p>");
+         $("#data").append("<div class='loading-spinner'><div class='spinner'></div></div>");
+         
 
 
          const getData = (() => {
@@ -74,32 +108,49 @@
         
            $.each(myData, function(key, value) {
                if (key == "cluster" + index_no) {
-
+                   var str_txt ="";
                    $.each(value, function(innerkey, innervalue) {
-
+                       str_txt = str_txt + "<center>"
+                       
                        if (innerkey == "picture") {
-                           $("#data").append("<p>" + " " + "</p>");
-                           $("#data").append("<img src=" + innervalue + " width='500' height='300' style='float: left; margin-left: 120px;'/>");
-                           $("#data").append("<p>" + " " + "</p>");
-                           $("#data").append("<br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>");
-                          
-                           
+                           str_txt = str_txt + "<div class='card' style=' width: 75%;margin-top: 10%;'> <img src= " + innervalue + " style= 'border-radius: 0%; border: 2px solid #555;'></div>"                           
                        };
 
-                       if (innerkey == "main") {
-                           //$("#data").append("<h3>" + innervalue + "</h3>");
-                           //$("#data").append("<p>" +" " + "</p>");
-                       };
-
+                       
+                       var cnt =0;
+                       var lngt = Object.keys(innervalue).length;
+                       var block_color = "FFFFFF";
+                       
                        if (innerkey == "info") {
-                           $.each(innervalue, function(innerInnerkey, innerInnervalue) {
-                               $("#data").append("<h4>" + innerInnervalue.title + " ------ " + "<a href=" + innerInnervalue.link + " target='_blank'>" + innerInnervalue.source + "</a>" + "</h4>")
-                               //$("#data").append("<a href="  +innerInnervalue.link +" target='_blank'>" + innerInnervalue.source +"</a>");
-                               $("#data").append("<p>" + " " + "</p>");
+                           str_txt = str_txt +"<ul class='list-group' style='color:gray; width: 75%; font-size: 2vw; font-family:Arial, sans-serif; ' align='left'>"
+                           
+                       
+                       
+                           
+                           $.each(innervalue, function(innerInnerkey, innerInnervalue,arr) {
+                           
+                               str_txt = str_txt + "<li class='list-group-item d-flex justify-content-between align-items-center' style= 'background-color: #"+ block_color+ ";'> "+ innerInnervalue.title + " <a href= " + innerInnervalue.link + " class='badge rounded-pill text-bg-secondary ' target='_blank' style=' font-size: 1.5vw; font-family:Garamond, serif;badge-color: blue;' > "+ innerInnervalue.source +" </a></li>"
+                               
+                               
+                               
+                               if (block_color == "FFFFFF"){
+                                   block_color = "F2F2F2"
+                               }else{
+                                   block_color = "FFFFFF"
+                               };
+                               cnt = cnt+1;
+                               
+                               
+                           
+                           
+                            
 
                            });
+                          str_txt = str_txt + "</ul></center>"
+                          $("#data").append(str_txt)
                        };
-                       $("#data").append("<br></br>");
+                       
+                       //$("#data").append("</center>");
 
                    });
 
@@ -115,14 +166,19 @@
           myData = data;
           if (myData) {
             var lengtofdata = Object.keys(myData).length;
-          
+            var initial_txt =";"
           
             console.log(myData); 
-            dataDisplay.innerHTML = "";
-            $("#data").append("<p><h1>" + "HAZIR... " + "</h1></p>");
-            $("#data").append("<br><br><br><br><br><br><br><br><br><br>");
-            $("#data").append("<center><p><h1>" + "Ekranınızın sağ tarafına tıklayarak ileri" + "</h1></p><c/enter>");
-            $("#data").append("<center><p><h1>" + "Sol tarafına tıklayarak geri gidebilirsiniz" + "</h1></p><c/enter>");
+            dataDisplay.innerHTML = "<br><br><br><br><br>";
+            initial_txt = initial_txt+"<div class='row' style= margin-top: 20rem;'>" 
+            initial_txt = initial_txt+"<div class='col-sm-6 mb-3 mb-sm-0'><div class='card' style='background-color: #F2F2F2;'><div class='card-body'><h1 class='card-title'>GERİ</h1><h3 class='card-text'>Haberlerde geri gitmek için sayfanın sol tarafında herhangi bir yere tıklayın.</h3>"
+            initial_txt = initial_txt+"</div></div></div>"
+            initial_txt = initial_txt+"<div class='col-sm-6'><div class='card' style='background-color: #F2F2F2;'><div class='card-body'><h1 class='card-title'>İLERİ</h1><h3 class='card-text'>Haberlerde ileri gitmek için sayfanın sağ tarafında herhangi bir yere tıklayın.</h3>"
+            initial_txt = initial_txt+"</div></div></div></div>"
+            
+                    
+                    
+            $("#data").append(initial_txt)
             
             
             
