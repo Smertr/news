@@ -1,70 +1,224 @@
 <!DOCTYPE html>
-<html>
+
 <head>
-  <title>My Bootstrap Card</title>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <meta charset="UTF-8">
+    <title>Rastgele Benzer Haberler...</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://sdk.amazonaws.com/js/aws-sdk-2.103.0.min.js"></script>
+    
+    <style>
+    body {
+      font-size: 16px;
+    }
+    
+    h1 {
+      font-size: 50px;
+    }
+
+    
+    
+    
+  </style>
+    
+
 </head>
+
 <body>
+    
+
+    <div id="data"></div>
+
+    <script>
+        var randomNum   = 0;
+        var index_news  = 0;
+        var index_no    = 0;
+        
+        const dataDisplay = document.getElementById("data");
+         $("#data").append("<p><h2>" + "HABERLER BEKLENİYOR " + "</h2></p>");
+         
 
 
-<center>
-<div class="rounded" style=" width: 75%;margin-top: 10%; thumbnail-border-radius:18rem;">
-  <img src="https://i.sozcucdn.com/wp-content/uploads/2023/03/20/aa-20230313-30553774-30553768-karayollarinin_turuncu_kamyonlari_hatayda_enkaz_kaldirmak_icin_20_bin_sefer_duzenledi.jpeg?w=776&h=436&mode=crop" class="card-img-top" alt="...">
-</div>  
-  <br>
- <ul class="list-group" style="color:gray;width: 75%; font-size: 2vw; font-family:Arial, sans-serif; " align="left">
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #FFFFFF;">
-    Millet İttifakı'nın Cumhurbaşkanı Adayı ve CHP Genel Başkanı Kemal Kılıçdaroğlu, HDP Eş Genel Başkanları Pervin Buldan ile Mithat Sancar'ı ziyaret etti.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style=" font-size: 1.5vw; font-family:Garamond, serif;" >Yeni Akit</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #F2F2F2;">
-    TİM Başkanvekili Çetin Tecdelioğlu, depremin iç piyasayı yaklaşık yüzde 25-30 olumsuz etkilediğini söyledi. Tecdelioğlu, mevcut dolar/TL s
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style=" font-size: 1.5vw; font-family:Garamond, serif;" >Milliyet</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #FFFFFF;">
-    İstanbul Demir ve Demir Dışı Metaller İhracatçıları Birliği (İDDMİB) Başkanı ve Türkiye İhracatçılar Meclisi (TİM) Başkan Vekili Çetin Tecdelioğlu, d
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style=" font-size: 1.5vw; font-family:Garamond, serif;" >Sözcü</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #F2F2F2;">
-    ciddi bir işgücü problemi olduğunu belirterek, depremin iç piyasayı yaklaşık yüzde 25-30, ihracatı da yüzde yüzde 8 civarı olumsuz etkilediğini söyledi.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style="font-size: 1.5vw; font-family:Garamond, serif;" >Habertürk</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #FFFFFF;">
-    Dolar/TL seviyesinin de yeni siparişleri almakta ve ihracatı sürdürülebilir şekilde devam ettirmekte sorun yarattığını belirten.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style=" font-size: 1.5vw; font-family:Garamond, serif;" >Karar</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #F2F2F2;">
-    Tecdelioğlu, faiz seviyeleri ile enerji maliyetlerinin de ihracat üzerinde baskı yaratan diğer unsurlar olduğunu söyledi.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style="font-size: 1.5vw; font-family:Garamond, serif;" >Cumhuriyet</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #FFFFFF;">
-    TİM verilerine göre Şubat ayında genel ihracat bir önceki yılın aynı ayına göre yüzde 6,4 düşüşle 18,6 milyar dolar olarak gerçekleşti.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style="font-size: 1.5vw; font-family:Garamond, serif;" >Oksijen</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #F2F2F2;">
-    Şubat ayında genel ihracatın düşüşünde deprem.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style="font-size: 1.5vw; font-family:Garamond, serif;" >Yeni Akit</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #FFFFFF;">
-    İhracat rakamlarındaki düşüşün tamamını depreme bağlamak doğru değil. Başlıklara baktığımız zaman kur politikası, faiz, rekabetçi tarifelerde olmayan enerji bizi çok etkiliyor” dedi ve şunları söyledi.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style="font-size: 1.5vw; font-family:Garamond, serif;" >A Haber</a>
-  </li>
-  <li class="list-group-item d-flex justify-content-between align-items-center" style= "background-color: #F2F2F2;">
-    Millet İttifakı'nın Cumhurbaşkanı Adayı ve CHP Genel Başkanı Kemal Kılıçdaroğlu, HDP Eş Genel Başkanları Pervin Buldan ile Mithat Sancar'ı ziyaret etti.
-    <a href="https://www.sozcu.com.tr/" class="badge rounded-pill text-bg-secondary " target='_blank' style="font-size: 1.5vw; font-family:Garamond, serif;" >Takvim</a>
-  </li>
-  
-</ul>
+         const getData = (() => {
+         let data = null;
+          
+         return async () => {
+            if (!data) {
+              const response = await fetch('https://m8myq3vscc.execute-api.us-east-1.amazonaws.com/analyze_news/daily_news');
+              data = await response.json();
+            }
+            
+            return data;
+          }
+        })();
+        
+        
+        
+        
+        let generatedIntegers = [];
 
+        function getRandomIntInRange(min, max) {
+          let randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+          
+          while (generatedIntegers.includes(randomInt)) {
+            randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+          }
+          
+          generatedIntegers.push(randomInt);
+          return randomInt;
+        }
+        
+        
+        
+        
+        
+        function displayData(index_no){
+            // clear previous data
+           dataDisplay.innerHTML = "";
+        
+           $.each(myData, function(key, value) {
+               if (key == "cluster" + index_no) {
+                   var str_txt ="";
+                   $.each(value, function(innerkey, innervalue) {
+                       str_txt = str_txt + "<center>"
+                       
+                       if (innerkey == "picture") {
+                           str_txt = str_txt + "<div class='card' style=' width: 75%;margin-top: 10%;'> <img src= " + innervalue + " style= 'border-radius: 0%; border: 2px solid #555;'></div>"                           
+                       };
 
-  
+                       
+                       var cnt =0;
+                       var lngt = Object.keys(innervalue).length;
+                       var block_color = "FFFFFF";
+                       
+                       if (innerkey == "info") {
+                           str_txt = str_txt +"<ul class='list-group' style='color:gray; width: 75%; font-size: 2vw; font-family:Arial, sans-serif; ' align='left'>"
+                           
+                       
+                       
+                           
+                           $.each(innervalue, function(innerInnerkey, innerInnervalue,arr) {
+                           
+                               str_txt = str_txt + "<li class='list-group-item d-flex justify-content-between align-items-center' style= 'background-color: #"+ block_color+ ";'> "+ innerInnervalue.title + " <a href= " + innerInnervalue.link + " class='badge rounded-pill text-bg-secondary ' target='_blank' style=' font-size: 1.5vw; font-family:Garamond, serif;badge-color: blue;' > "+ innerInnervalue.source +" </a></li>"
+                               
+                               
+                               
+                               if (block_color == "FFFFFF"){
+                                   block_color = "F2F2F2"
+                               }else{
+                                   block_color = "FFFFFF"
+                               };
+                               cnt = cnt+1;
+                               
+                               
+                           
+                           
+                            
 
-</center>
+                           });
+                          str_txt = str_txt + "</ul></center>"
+                          $("#data").append(str_txt)
+                       };
+                       
+                       //$("#data").append("</center>");
 
+                   });
 
+               };
+           });
+        
+        
+        };  
+        
+        
+        let myData;
+        getData().then((data) => {
+          myData = data;
+          if (myData) {
+            var lengtofdata = Object.keys(myData).length;
+          
+          
+            console.log(myData); 
+            dataDisplay.innerHTML = "";
+            $("#data").append("<p><h1>" + "HAZIR... " + "</h1></p>");
+            $("#data").append("<br><br><br><br><br><br><br><br><br><br>");
+            $("#data").append("<center><p><h1>" + "Ekranınızın sağ tarafına tıklayarak ileri" + "</h1></p><c/enter>");
+            $("#data").append("<center><p><h1>" + "Sol tarafına tıklayarak geri gidebilirsiniz" + "</h1></p><c/enter>");
+            
+            
+            
+            
+            
+            
+            document.addEventListener("click", function(event) {
+              var windowWidth = window.innerWidth;
+              var clickX = event.clientX;
+              
+              if (clickX > windowWidth / 2) {
+              
+              
+                index_no =    index_news;
+                
+                displayData(index_no);
 
-  
+                index_news = index_news + 1;
+                
+                if (index_news == lengtofdata){
+                    index_news =0;
+                    };
 
+              }
+              else{
+              
+              if (index_news>=0){
+                  index_no =    index_news-2;
+                  
+                  displayData(index_no);
+
+                  index_news = index_news - 1;
+                  
+                  if (index_news == lengtofdata){
+                      index_news =0;
+                      };
+              };
+              
+              
+              }
+            });
+
+            
+            
+            /*
+            //var button_random = document.querySelector('#button_random');
+            myButton_random.addEventListener('click', function() {  
+                    
+                    randomNum = getRandomIntInRange(0, lengtofdata);
+                    
+                    index_no =    randomNum;
+                    
+                    displayData(index_no);
+
+            });
+            */
+          } else {
+            console.log("Data hasn't been fetched yet");
+          }
+        });
+        
+        
+
+        
+        
+        
+       
+        
+        
+        
+
+       
+    </script>
 </body>
+
 </html>
+
