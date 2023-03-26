@@ -2,14 +2,19 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width/2, initial-scale=1">
     <title>Rastgele Benzer Haberler...</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"></link>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
     <script src="https://sdk.amazonaws.com/js/aws-sdk-2.103.0.min.js"></script>
     
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://getbootstrap.com/docs/5.3/assets/css/docs.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha2/dist/js/bootstrap.bundle.min.js"></script>
     <style>
+    
+    
     body {
       font-size: 16px;
        background-color: #F2F2F2;
@@ -45,30 +50,25 @@
      transform: rotate(360deg);
    }
  }
-    
+
     
   </style>
     
 
 </head>
 
-<body>
-    
-
-
-
+<body class="p-3 m-0 border-0 bd-example">
+   
     <div id="data"></div>
-
     <script>
         var randomNum   = 0;
         var index_news  = 0;
-        var index_no    = 0;
+        
         
         const dataDisplay = document.getElementById("data");
          $("#data").append("<div class='loading-spinner'><div class='spinner'></div></div>");
-         
-
-
+      
+      
          const getData = (() => {
          let data = null;
           
@@ -85,30 +85,86 @@
         
         
         
-        let generatedIntegers = [];
+        
+        
+        
+        
+        
+        
+        
+        function mainPage(){
+                    var index_no    = 0;
+        
+                  dataDisplay.innerHTML = "";
+                  var str_txt ="<ul id='clickable-list' class='list-group'>";
+                  
+                  
+                  
+                  
+                  $.each(myData, function(key, value) {
+                      if (key == "cluster" + index_no) {
+                              
+                              
+                              $.each(value, function(innerkey, innervalue) {
+                                  if (innerkey == "main") {
 
-        function getRandomIntInRange(min, max) {
-          let randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
+                                          str_txt =str_txt + "<li class='list-group-item d-flex justify-content-between align-items-center'>";
+                                       
+                                          
+                                          str_txt =str_txt + innervalue 
+                                          
+                                          str_txt =str_txt + "<span class='badge bg-secondary rounded-pill'>"
+                                          
+                                          
+                                  };        
+                                  var lngt = Object.keys(innervalue).length;
+                                  if (innerkey == "info") {
+                                          var lngt = Object.keys(innervalue).length;
+                                          str_txt =str_txt + lngt
+                                          str_txt =str_txt + "</span></li>"
+                                  
+                                  };
+                              
+                              });
+                 
+                      };
+                      index_no = index_no + 1;
+                  });
+                  $("#data").append(str_txt)
+                  
+                  const clickableList = document.querySelectorAll('#clickable-list li');
+
+                  for (let i = 0; i < clickableList.length; i++) {
+                    clickableList[i].addEventListener('click', (event) => {
+                    var counts = i
+                    displayData(counts);
+                      console.log(counts);
+                    });
+                  };
+                  
+        
+        
+        };
+        
+
+
+
+        function homeFunction() {
           
-          while (generatedIntegers.includes(randomInt)) {
-            randomInt = Math.floor(Math.random() * (max - min + 1)) + min;
-          }
-          
-          generatedIntegers.push(randomInt);
-          return randomInt;
-        }
-        
-        
-        
-        
-        
-        function displayData(index_no){
+          mainPage();
+               
+                  
+        };
+
+
+
+        function displayData(counts){
             // clear previous data
            dataDisplay.innerHTML = "";
-        
+            var str_txt ="<center> <i onclick='homeFunction()' class='fa fa-arrow-left' style='font-size:32px;color:#387ED8'></i><center>"
            $.each(myData, function(key, value) {
-               if (key == "cluster" + index_no) {
-                   var str_txt ="";
+               if (key == "cluster" + counts) {
+                   
                    $.each(value, function(innerkey, innervalue) {
                        str_txt = str_txt + "<center>"
                        
@@ -156,92 +212,28 @@
 
                };
            });
-        
+        const clickHome = document.querySelectorAll('#clickable-list li');
         
         };  
+        
+        
+        
+        
         
         
         let myData;
         getData().then((data) => {
           myData = data;
           if (myData) {
-            var lengtofdata = Object.keys(myData).length;
-            var initial_txt =";"
-          
-            console.log(myData); 
-            dataDisplay.innerHTML = "<br><br><br><br><br>";
-            initial_txt = initial_txt+"<div class='row' style= margin-top: 20rem;'>" 
-            initial_txt = initial_txt+"<div class='col-sm-6 mb-3 mb-sm-0'><div class='card' style='background-color: #F2F2F2;'><div class='card-body'><h1 class='card-title'>GERİ</h1><h3 class='card-text'>Haberlerde geri gitmek için sayfanın sol tarafında herhangi bir yere tıklayın.</h3>"
-            initial_txt = initial_txt+"</div></div></div>"
-            initial_txt = initial_txt+"<div class='col-sm-6'><div class='card' style='background-color: #F2F2F2;'><div class='card-body'><h1 class='card-title'>İLERİ</h1><h3 class='card-text'>Haberlerde ileri gitmek için sayfanın sağ tarafında herhangi bir yere tıklayın.</h3>"
-            initial_txt = initial_txt+"</div></div></div></div>"
-            
-                    
-                    
-            $("#data").append(initial_txt)
-            
-            
-            
-            
-            
-            
-            document.addEventListener("click", function(event) {
-              var windowWidth = window.innerWidth;
-              var clickX = event.clientX;
-              
-              if (clickX > windowWidth / 2) {
-              
-              
-                index_no =    index_news;
-                
-                displayData(index_no);
-
-                index_news = index_news + 1;
-                
-                if (index_news == lengtofdata){
-                    index_news =0;
-                    };
-
-              }
-              else{
-              
-              if (index_news>=0){
-                  index_no =    index_news-2;
                   
-                  displayData(index_no);
-
-                  index_news = index_news - 1;
-                  
-                  if (index_news == lengtofdata){
-                      index_news =0;
-                      };
-              };
-              
-              
-              }
-            });
-
-            
-            
-            /*
-            //var button_random = document.querySelector('#button_random');
-            myButton_random.addEventListener('click', function() {  
-                    
-                    randomNum = getRandomIntInRange(0, lengtofdata);
-                    
-                    index_no =    randomNum;
-                    
-                    displayData(index_no);
-
-            });
-            */
-          } else {
-            console.log("Data hasn't been fetched yet");
-          }
+            mainPage();
+                 
+                 
+         
+         };   
         });
         
         
-
         
         
         
