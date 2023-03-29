@@ -63,7 +63,7 @@
     <script>
         var randomNum   = 0;
         var index_news  = 0;
-        
+        var scrolpos    = 0;
         
         const dataDisplay = document.getElementById("data");
          $("#data").append("<div class='loading-spinner'><div class='spinner'></div></div>");
@@ -93,8 +93,10 @@
         
         
         function mainPage(){
-                    var index_no    = 0;
-        
+                    
+                    
+                  var index_no    = 0;
+                
                   dataDisplay.innerHTML = "";
                   var str_txt ="<ul id='clickable-list' class='list-group'>";
                   
@@ -137,6 +139,7 @@
                   for (let i = 0; i < clickableList.length; i++) {
                     clickableList[i].addEventListener('click', (event) => {
                     var counts = i
+                    
                     displayData(counts);
                       console.log(counts);
                     });
@@ -152,6 +155,8 @@
         function homeFunction() {
           
           mainPage();
+          window.scrollTo(0, scrolpos);
+          console.log(scrolpos);
                
                   
         };
@@ -159,7 +164,10 @@
 
 
         function displayData(counts){
-            // clear previous data
+        const scrollPosition = window.scrollY || window.pageYOffset;
+        scrolpos = scrollPosition;
+        console.log(scrollPosition);
+                    // clear previous data
            dataDisplay.innerHTML = "";
             var str_txt ="<center> <i onclick='homeFunction()' class='fa fa-arrow-left' style='font-size:32px;color:#387ED8'></i><center>"
            $.each(myData, function(key, value) {
@@ -213,7 +221,6 @@
                };
            });
         const clickHome = document.querySelectorAll('#clickable-list li');
-        
         };  
         
         
@@ -225,7 +232,6 @@
         getData().then((data) => {
           myData = data;
           if (myData) {
-                  
             mainPage();
                  
                  
